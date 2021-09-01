@@ -58,6 +58,64 @@ jobs:
       - name: Build packages
         run: >
           sudo -u builder python3 module-build.py \
+            --target /home/builder/dist \
+            --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
+            --nginx-depend ${{ matrix.nginx_depend }} \
+            --module-map modules.json \
+            --deb-path packages \
+            --deb-suffix="-ubuntu"
+
+  nginx-modules:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        include:
+
+          - os: "ubuntu-18.04"
+            nginx_version: "1.20.1"
+            nginx_depend: "1.20.1-1"
+
+          - os: "ubuntu-20.04"
+            nginx_version: "1.20.1"
+            nginx_depend: "1.20.1-1"
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Configure nginx.list
+        run: sudo cp nginx.list /etc/apt/sources.list.d/
+
+      - name: Configure nginx gpg key
+        run: sudo cp nginx.gpg /etc/apt/trusted.gpg.d/
+
+      - name: Update repo
+        run: sudo apt-get update
+
+      - name: Install build requires
+        run: >
+          sudo apt-get install -y \
+            build-essential ca-certificates curl git gnupg2 libpcre2-dev \
+            libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring
+
+      - name: Adding builder user
+        run: sudo useradd -m -s /bin/bash builder
+
+      - name: Create packages directory
+        run: sudo mkdir -p packages && sudo chmod g+rwX packages && sudo chown :builder packages
+
+      - name: Create packages directory
+        run: (cd /home/builder && sudo -u builder apt source nginx=${{ matrix.nginx_version }})
+
+      - name: Build packages
+        run: >
+          sudo -u builder python3 module-build.py \
+            --target /home/builder/dist \
             --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
             --nginx-depend ${{ matrix.nginx_depend }} \
             --module-map modules.json \
