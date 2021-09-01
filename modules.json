@@ -1,0 +1,190 @@
+{
+  "modules": {
+    "nginx-module-ndk": {
+      "repo": "https://github.com/vision5/ngx_devel_kit.git",
+      "ref": "v0.3.1",
+      "version": "0.3.1",
+      "files": ["ndk_http_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/00-nginx-module-ndk.conf": "load_module /usr/lib/nginx/modules/ndk_http_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-ndk",
+        "Version: 0.3.1",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Nginx Development Kit (NDK)",
+        "Homepage: https://github.com/vision5/ngx_devel_kit"
+      ]
+    },
+    "nginx-module-vts": {
+      "repo": "https://github.com/vozlt/nginx-module-vts.git",
+      "ref": "v0.1.18",
+      "version": "0.1.18",
+      "files": [
+        "ngx_http_vhost_traffic_status_module.so"
+      ],
+      "configs": {
+        "modules-available/50-nginx-module-vts.conf": "load_module /usr/lib/nginx/modules/ngx_http_vhost_traffic_status_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-vts",
+        "Version: 0.1.18",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Nginx virtual host traffic status module",
+        "Homepage: https://github.com/vozlt/nginx-module-vts"
+      ]
+    },
+    "nginx-module-upsync": {
+      "repo": "https://github.com/weibocom/nginx-upsync-module.git",
+      "ref": "v2.1.3",
+      "version": "2.1.3",
+      "files": ["ngx_http_upsync_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-upsync.conf": "load_module /usr/lib/nginx/modules/ngx_http_upsync_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-upsync",
+        "Version: 2.1.3",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Nginx C module, which can sync upstreams from Consul or others. It dynamically modifies backend-servers attributes (weight, max_fails,...), without need to reload NGINX.",
+        "Homepage: https://github.com/weibocom/nginx-upsync-module"
+      ]
+    },
+    "nginx-module-brotli": {
+      "repo": "https://github.com/google/ngx_brotli.git",
+      "ref": "v1.0.0rc",
+      "version": "1.0.0-rc0",
+      "files": [
+        "ngx_http_brotli_static_module.so",
+        "ngx_http_brotli_filter_module.so"
+      ],
+      "configs": {
+        "modules-available/50-nginx-module-brotli-static.conf": "load_module /usr/lib/nginx/modules/ngx_http_brotli_static_module.so;\n",
+        "modules-available/50-nginx-module-brotli-filter.conf": "load_module /usr/lib/nginx/modules/ngx_http_brotli_filter_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-brotli",
+        "Version: 1.0.0rc0",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Brotli is a generic-purpose lossless compression algorithm that compresses data using a combination of a modern variant of the LZ77 algorithm, Huffman coding and 2nd order context modeling, with a compression ratio comparable to the best currently available general-purpose compression methods. It is similar in speed with deflate but offers more dense compression.",
+        "Homepage: https://github.com/google/ngx_brotli"
+      ]
+    },
+    "nginx-module-headers-more": {
+      "repo": "https://github.com/openresty/headers-more-nginx-module.git",
+      "ref": "v0.33",
+      "version": "0.33",
+      "files": ["ngx_http_headers_more_filter_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-headers-more.conf": "load_module /usr/lib/nginx/modules/ngx_http_headers_more_filter_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-headers-more",
+        "Version: 0.33",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_headers_more - Set and clear input and output headers...more than add!",
+        "Homepage: https://github.com/openresty/headers-more-nginx-module"
+      ]
+    },
+    "nginx-module-redis2": {
+      "repo": "https://github.com/openresty/redis2-nginx-module.git",
+      "ref": "v0.15",
+      "version": "0.15",
+      "files": ["ngx_http_redis2_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-redis2.conf": "load_module /usr/lib/nginx/modules/ngx_http_redis2_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-redis2",
+        "Version: 0.15",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_redis2 - Nginx upstream module for the Redis 2.0 protocol",
+        "Homepage: https://github.com/openresty/redis2-nginx-module"
+      ]
+    },
+    "nginx-module-encrypted-session": {
+      "repo": "https://github.com/openresty/encrypted-session-nginx-module.git",
+      "ref": "v0.08",
+      "version": "0.08",
+      "files": ["ngx_http_encrypted_session_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-encrypted-session.conf": "load_module /usr/lib/nginx/modules/ngx_http_encrypted_session_module.so;\n"
+      },
+      "depends": "nginx (= %s), nginx-module-ndk",
+      "debian": [
+        "Package: nginx-module-encrypted-session",
+        "Version: 0.08",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: encrypted-session-nginx-module - encrypt and decrypt nginx variable values.",
+        "Homepage: https://github.com/openresty/encrypted-session-nginx-module"
+      ]
+    },
+    "nginx-module-cookie-flag": {
+      "repo": "https://github.com/AirisX/nginx_cookie_flag_module.git",
+      "ref": "v1.1.0",
+      "version": "1.1.0",
+      "files": ["ngx_http_cookie_flag_filter_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-cookie-flag.conf": "load_module /usr/lib/nginx/modules/ngx_http_cookie_flag_filter_module.so;\n"
+      },
+      "depends": "nginx (= %s)",
+      "debian": [
+        "Package: nginx-module-cookie-flag",
+        "Version: 1.1.0",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: The Nginx module for adding cookie flag",
+        "Homepage: https://github.com/AirisX/nginx_cookie_flag_module/"
+      ]
+    },
+    "nginx-module-set-misc": {
+      "repo": "https://github.com/openresty/set-misc-nginx-module.git",
+      "ref": "v0.32",
+      "version": "0.32",
+      "files": ["ngx_http_set_misc_module.so"],
+      "configs": {
+        "modules-available/50-nginx-module-set-misc.conf": "load_module /usr/lib/nginx/modules/ngx_http_set_misc_module.so;\n"
+      },
+      "depends": "nginx (= %s), nginx-module-ndk",
+      "debian": [
+        "Package: nginx-module-set-misc",
+        "Version: 0.32",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_set_misc - Various set_xxx directives added to nginx's rewrite module (md5/sha1, sql/json quoting, and many more)",
+        "Homepage: https://github.com/openresty/set-misc-nginx-module"
+      ]
+    }
+  }
+}
