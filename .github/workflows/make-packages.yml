@@ -35,7 +35,7 @@ jobs:
           submodules: recursive
 
       - name: Configure sources.list as ${{ matrix.repo }}
-        run: sudo cp ${{ matrix.python }} /etc/apt/sources.list
+        run: sudo cp ${{ matrix.repo }} /etc/apt/sources.list
 
       - name: Update repo
         run: sudo apt-get update
