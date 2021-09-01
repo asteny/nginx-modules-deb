@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from argparse import ArgumentParser
 from contextlib import contextmanager
@@ -8,6 +9,10 @@ from subprocess import check_call, Popen, check_output
 from tempfile import TemporaryDirectory
 from types import MappingProxyType
 from typing import Dict
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger()
+
 
 parser = ArgumentParser()
 parser.add_argument("--nginx-src", required=True)
@@ -27,6 +32,7 @@ def cd(path) -> Path:
 
     os.chdir(str(path))
     try:
+        log.info("Changing directory %s => %s", current, path)
         yield Path(os.getcwd())
     finally:
         os.chdir(current)
@@ -52,9 +58,13 @@ def build(modules, module_paths) -> Dict[str, dict]:
 
         for fname in params['files']:
             fpath = cwd / 'objs' / fname
+
             assert fpath.exists(), f"File {fpath} doesn't exists"
+            log.info("Found binary %s", fpath)
+
             check_call(["strip", "-s", str(fpath)])
             results[name]['size'] += fpath.stat().st_size
+
             results[name]['files'].append(fpath)
     return results
 
@@ -63,14 +73,20 @@ def prepare_modules(modules, build_path) -> Dict[str, Path]:
     module_paths = {}
     for name, params in modules.items():
         module_path = build_path / str(build_path / name)
+        log.info("Cloning repo %s", params['repo'])
         check_call([
             'git', 'clone', '--recursive',
             params['repo'], module_path.resolve()
         ])
         with cd(module_path.resolve()):
+            log.info("Fetching submodules for %s", params['repo'])
             check_call(['git', 'submodule', 'init'])
             check_call(['git', 'submodule', 'update'])
             if 'ref' in params:
+                log.info(
+                    "Switching to ref %r for %s",
+                    params['ref'], params['repo']
+                )
                 check_call(['git', 'checkout', params["ref"]])
             if 'prefix' in params:
                 module_path = module_path / params['prefix']
@@ -82,7 +98,7 @@ def prepare_modules(modules, build_path) -> Dict[str, Path]:
 def make_deb(path: Path, deb_path: Path, module: dict, nginx_version):
     with cd(path) as path:
         control_file = path / "DEBIAN" / "control"
-        control_file.parent.mkdir(exist_ok=True, parents=True)
+        control_file.parent.mkdir(exist_ok=True, parents=True, mode=0o775)
 
         with open(control_file, "w") as fp:
             for line in module['debian']:
@@ -104,7 +120,7 @@ def main():
 
     dist = Path(arguments.target).resolve()
     packages = Path(arguments.deb_path).resolve()
-    packages.mkdir(exist_ok=True, parents=True)
+    packages.mkdir(exist_ok=True, parents=True, mode=0o775)
 
     with open(arguments.module_map, "r") as fp:
         module_map = MappingProxyType(json.load(fp))
@@ -115,22 +131,22 @@ def main():
         module_paths = prepare_modules(modules, build_path)
         artifacts = build(modules, module_paths)
 
-        dist.mkdir(exist_ok=True, parents=True)
+        dist.mkdir(exist_ok=True, parents=True, mode=0o775)
         for name, module in artifacts.items():
             files = module['files']
             module_dir = dist / name
             module_target = (
                 module_dir / 'usr' / 'lib' / 'nginx' / 'modules'
             )
-            module_target.mkdir(exist_ok=True, parents=True)
+            module_target.mkdir(exist_ok=True, parents=True, mode=0o775)
 
             if 'configs' in module:
                 config_dir = module_dir / 'etc' / 'nginx'
-                config_dir.mkdir(exist_ok=True, parents=True)
+                config_dir.mkdir(exist_ok=True, parents=True, mode=0o775)
 
                 for fname, content in module['configs'].items():
                     fpath = config_dir / fname
-                    fpath.parent.mkdir(exist_ok=True, parents=True)
+                    fpath.parent.mkdir(exist_ok=True, parents=True, mode=0o775)
                     with open(fpath, "w") as fp:
                         fp.write(content)
 
