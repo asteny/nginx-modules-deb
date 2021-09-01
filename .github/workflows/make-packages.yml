@@ -6,10 +6,7 @@ name: make-packages
 on:
   push:
     branches:
-      - 'release/**'
-  release:
-    types:
-      - created
+      - 'master'
 
 jobs:
   ubuntu-modules:
