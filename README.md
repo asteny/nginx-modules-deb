@@ -2,6 +2,12 @@
 
 This repo contains Ubuntu packages for popular Nginx modules as built dynamically and packed as deb packages
 
+Each package contains nginx configuration files like `/etc/nginx/modules-available/50-${MODULE_NAME}.conf`, it does not require knowladge absolut so-library path.
+    
+In default ubuntu nginx contains includes like `/etc/nginx/modules-enabled/*.conf`, so you should create symlink links to module configs.
+    
+For mainline nginx just add `include /etc/nginx/modules-available/*.conf`.
+
 Installation for mainlain
 ------------
 ```bash
