@@ -98,7 +98,7 @@ jobs:
         run: |
           for fname in packages/*.deb
           do
-            package_cloud push the_asten/nginx-ubuntu-modules/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
+            package_cloud push the_asten/nginx-modules-ubuntu/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
           done
 
   nginx-modules:
@@ -191,5 +191,5 @@ jobs:
         run: |
           for fname in packages/*.deb
           do
-            package_cloud push the_asten/nginx-modules/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
+            package_cloud push the_asten/nginx-modules-mainline/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
           done
