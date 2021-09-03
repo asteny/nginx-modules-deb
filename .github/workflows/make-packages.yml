@@ -120,4 +120,4 @@ jobs:
             --nginx-depend ${{ matrix.nginx_depend }} \
             --module-map modules.json \
             --deb-path packages \
-            --deb-suffix="-ubuntu"
+            --deb-suffix="-nginx"
