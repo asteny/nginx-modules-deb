@@ -75,9 +75,10 @@ jobs:
 
       - name: Prepare gpg
         run: |
-          echo "$GPGKEY" | base64 --decode > /tmp/private.key
+          echo "$GPGKEY" | base32 --decode > /tmp/private.key
           gpg --import /tmp/private.key
           gpg --list-keys
+          rm -rf /tmp/private.key
 
       - name: Sign deb package
         run: |
@@ -162,9 +163,10 @@ jobs:
 
       - name: Prepare gpg
         run: |
-          echo "$GPGKEY" | base64 --decode > /tmp/private.key
+          echo "$GPGKEY" | base32 --decode > /tmp/private.key
           gpg --import /tmp/private.key
           gpg --list-keys
+          rm -rf /tmp/private.key
 
       - name: Sign deb package
         run: |
