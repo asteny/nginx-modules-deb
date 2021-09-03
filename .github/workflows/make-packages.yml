@@ -191,5 +191,5 @@ jobs:
         run: |
           for fname in packages/*.deb
           do
-            package_cloud push the_asten/nginx-modules/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
+            package_cloud push the_asten/nginx-modules/ubuntu/nginx-${{ matrix.repo_suffix }} $fname --skip-errors
           done
