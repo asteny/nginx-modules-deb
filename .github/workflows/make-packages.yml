@@ -45,7 +45,7 @@ jobs:
       - name: Install build requires
         run: >
           sudo apt-get install -y \
-            build-essential ca-certificates curl git gnupg2 libpcre2-dev \
+            build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
             ruby ruby-dev gem dpkg-sig
 
@@ -132,7 +132,7 @@ jobs:
       - name: Install build requires
         run: >
           sudo apt-get install -y \
-            build-essential ca-certificates curl git gnupg2 libpcre2-dev \
+            build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
             ruby ruby-dev gem dpkg-sig
 
