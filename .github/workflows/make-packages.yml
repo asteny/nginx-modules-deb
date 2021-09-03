@@ -113,12 +113,12 @@ jobs:
 
           - os: "ubuntu-18.04"
             nginx_version: "1.20.1"
-            nginx_depend: "1.20.1-1"
+            nginx_depend: "1.20.1-1~bionic"
             repo_suffix: bionic
 
           - os: "ubuntu-20.04"
             nginx_version: "1.20.1"
-            nginx_depend: "1.20.1-1"
+            nginx_depend: "1.20.1-1~focal"
             repo_suffix: focal
 
     steps:
