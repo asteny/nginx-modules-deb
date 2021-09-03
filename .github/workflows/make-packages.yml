@@ -51,6 +51,7 @@ jobs:
 
       - name: Install package cloud cli
         run: >
+          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
@@ -137,6 +138,7 @@ jobs:
 
       - name: Install package cloud cli
         run: >
+          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
