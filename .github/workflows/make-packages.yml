@@ -84,6 +84,7 @@ jobs:
 
       - name: Sign deb package
         run: |
+          sudo chown -R $(whoami) packages
           for fname in packages/*.deb
           do
             md5sum $fname &&
@@ -176,6 +177,7 @@ jobs:
 
       - name: Sign deb package
         run: |
+          sudo chown -R $(whoami) packages
           for fname in packages/*.deb
           do
             md5sum $fname &&
