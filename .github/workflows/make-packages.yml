@@ -47,11 +47,10 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev gem dpkg-sig
+            ruby ruby-dev rake gem dpkg-sig
 
       - name: Install package cloud cli
         run: |
-          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
@@ -140,11 +139,10 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev gem dpkg-sig
+            ruby ruby-dev rake gem dpkg-sig
 
       - name: Install package cloud cli
         run: |
-          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
