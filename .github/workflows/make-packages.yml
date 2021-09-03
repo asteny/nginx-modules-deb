@@ -47,10 +47,11 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev rake gem dpkg-sig
+            ruby ruby-dev gem dpkg-sig
 
       - name: Install package cloud cli
         run: |
+          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
@@ -139,10 +140,11 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev rake gem dpkg-sig
+            ruby ruby-dev gem dpkg-sig
 
       - name: Install package cloud cli
         run: |
+          sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
       - name: Adding builder user
@@ -189,5 +191,5 @@ jobs:
         run: |
           for fname in packages/*.deb
           do
-            package_cloud push the_asten/nginx-modules/ubuntu/nginx-${{ matrix.repo_suffix }} $fname --skip-errors
+            package_cloud push the_asten/nginx-modules/ubuntu/${{ matrix.repo_suffix }} $fname --skip-errors
           done
