@@ -74,8 +74,10 @@ jobs:
             --deb-suffix="-ubuntu"
 
       - name: Prepare gpg
+        env:
+          GPGKEY: ${{ secrets.GPGKEY }}
         run: |
-          echo "$GPGKEY" | base32 --decode > /tmp/private.key
+          echo "$GPGKEY" | base64 --decode > /tmp/private.key
           gpg --import /tmp/private.key
           gpg --list-keys
           rm -rf /tmp/private.key
@@ -90,6 +92,8 @@ jobs:
           done
 
       - name: Upload package
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
         run: |
           for fname in packages/*.deb
           do
@@ -162,9 +166,10 @@ jobs:
             --deb-suffix="-nginx"
 
       - name: Prepare gpg
+        env:
+          GPGKEY: ${{ secrets.GPGKEY }}
         run: |
-          echo -n ${GPGKEY} | base32 --decode| md5sum
-          echo "$GPGKEY" | base32 --decode > /tmp/private.key
+          echo "$GPGKEY" | base64 --decode > /tmp/private.key
           gpg --import /tmp/private.key
           gpg --list-keys
           rm -rf /tmp/private.key
@@ -179,6 +184,8 @@ jobs:
           done
 
       - name: Upload package
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
         run: |
           for fname in packages/*.deb
           do
