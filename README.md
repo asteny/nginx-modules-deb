@@ -1,5 +1,4 @@
-![build](https://github.com/asteny/nginx-modules-deb/actions/workflows/make-packages.yml/badge.svg)
-
+![build](https://github.com/asteny/nginx-modules-deb/actions/workflows/make-packages.yml/badge.svg) <a href="https://packagecloud.io"><img src="https://img.shields.io/badge/deb-packagecloud.io-844fec.svg"/></a>
 # Nginx dynamic modules
 
 This repo contains Ubuntu packages for popular Nginx modules as built dynamically and packed as deb packages
