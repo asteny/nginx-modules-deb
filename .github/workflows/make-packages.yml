@@ -50,7 +50,7 @@ jobs:
             ruby ruby-dev gem dpkg-sig
 
       - name: Install package cloud cli
-        run: >
+        run: |
           sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
@@ -137,7 +137,7 @@ jobs:
             ruby ruby-dev gem dpkg-sig
 
       - name: Install package cloud cli
-        run: >
+        run: |
           sudo gem install rake --no-document
           sudo gem install package_cloud --no-document
 
