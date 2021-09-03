@@ -13,7 +13,7 @@ Installation for mainlain
 ```bash
 apt-get update
 apt-get install gnupg2 apt-transport-https ca-certificates -y
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EA8AECDE414187DB
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C87187E0F279DECD
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys A57ED69D49D1012A
 printf "deb https://packagecloud.io/the_asten/nginx-modules-mainline/ubuntu/ focal main \ndeb-src https://packagecloud.io/the_asten/nginx-modules-mainline/ubuntu/ focal main" | tee -a /etc/apt/sources.list.d/nginx-modules-mainline.list
 apt-get update
@@ -24,7 +24,7 @@ Installation for Ubuntu
 ```bash
 apt-get update
 apt-get install gnupg2 apt-transport-https ca-certificates -y
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EA8AECDE414187DB
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 32E8B63A047C452C
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys A57ED69D49D1012A
 printf "deb https://packagecloud.io/the_asten/nginx-modules-ubuntu/ubuntu/ focal main \ndeb-src https://packagecloud.io/the_asten/nginx-modules-ubuntu/ubuntu/ focal main" | tee -a /etc/apt/sources.list.d/nginx-modules-ubuntu.list
 apt-get update
