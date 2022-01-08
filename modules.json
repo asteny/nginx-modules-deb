@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-echo": {
+      "repo": "https://github.com/openresty/echo-nginx-module.git",
+      "ref": "v0.62",
+      "version": "0.62",
+      "files": ["ngx_http_echo_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-echo.conf": "load_module /usr/lib/nginx/modules/ngx_http_echo_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-echo",
+        "Version: 0.62",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_echo - Brings \"echo\", \"sleep\", \"time\", \"exec\" and more shell-style goodies to Nginx config file.",
+        "Homepage: https://github.com/openresty/echo-nginx-module/"
+      ]
+    },
     "nginx-module-srcache": {
       "repo": "https://github.com/openresty/srcache-nginx-module.git",
       "ref": "v0.32",
@@ -7,7 +27,7 @@
       "files": ["ngx_http_srcache_filter_module.so"],
       "depends": "nginx (= %s)",
       "configs": {
-        "modules-available/50-nginx-module-upload.conf": "load_module /usr/lib/nginx/modules/ngx_http_srcache_filter_module.so;\n"
+        "modules-available/50-nginx-module-srcache.conf": "load_module /usr/lib/nginx/modules/ngx_http_srcache_filter_module.so;\n"
       },
       "debian": [
         "Package: nginx-module-upload",
