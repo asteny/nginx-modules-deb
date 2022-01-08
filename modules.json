@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-fancyindex": {
+      "repo": "https://github.com/aperezdc/ngx-fancyindex.git",
+      "ref": "v0.5.2",
+      "version": "0.5.2",
+      "files": ["ngx_http_fancyindex_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-fancyindex.conf": "load_module /usr/lib/nginx/modules/ngx_http_fancyindex_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-geoip2",
+        "Version: 0.5.2",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Nginx Fancy Index module - The Fancy Index module makes possible the generation of file listings, like the built-in autoindex module does, but adding a touch of style.",
+        "Homepage: https://github.com/aperezdc/ngx-fancyindex/tree/v0.5.2"
+      ]
+    },
     "nginx-module-geoip2": {
       "repo": "https://github.com/leev/ngx_http_geoip2_module.git",
       "ref": "3.3",
