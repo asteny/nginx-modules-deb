@@ -1,5 +1,45 @@
 {
   "modules": {
+    "nginx-module-push-stream": {
+      "repo": "https://github.com/wandenberg/nginx-push-stream-module.git",
+      "ref": "0.5.5",
+      "version": "0.5.5",
+      "files": ["ngx_http_push_stream_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-push-stream.conf": "load_module /usr/lib/nginx/modules/ngx_http_push_stream_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-push-stream",
+        "Version: 0.5.5",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: Nginx Push Stream Module - A pure stream http push technology for your Nginx setup.",
+        "Homepage: https://github.com/wandenberg/nginx-push-stream-module/"
+      ]
+    },
+    "nginx-module-rtmp": {
+      "repo": "https://github.com/arut/nginx-rtmp-module.git",
+      "ref": "v1.2.2",
+      "version": "1.2.2",
+      "files": ["ngx_rtmp_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-rtmp.conf": "load_module /usr/lib/nginx/modules/ngx_rtmp_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-rtmp",
+        "Version: 1.2.2",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: NGINX-based Media Streaming Server",
+        "Homepage: https://github.com/arut/nginx-rtmp-module/"
+      ]
+    },
     "nginx-module-ndk": {
       "repo": "https://github.com/vision5/ngx_devel_kit.git",
       "ref": "v0.3.1",
