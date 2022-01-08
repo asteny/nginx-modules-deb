@@ -11,7 +11,6 @@
       },
       "debian": [
         "Package: nginx-module-guess-mime",
-        "Version: 20190216",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -31,7 +30,6 @@
       },
       "debian": [
         "Package: nginx-module-fancyindex",
-        "Version: 0.5.2",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -51,7 +49,6 @@
       },
       "debian": [
         "Package: nginx-module-geoip2",
-        "Version: 3.3",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -72,7 +69,6 @@
       },
       "debian": [
         "Package: nginx-module-modsecurity",
-        "Version: 1.0.2",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -92,7 +88,6 @@
       },
       "debian": [
         "Package: nginx-module-echo",
-        "Version: 0.62",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -112,7 +107,6 @@
       },
       "debian": [
         "Package: nginx-module-upload",
-        "Version: 0.32",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -132,7 +126,6 @@
       },
       "debian": [
         "Package: nginx-module-upload",
-        "Version: 2.3.0",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -152,7 +145,6 @@
       },
       "debian": [
         "Package: nginx-module-push-stream",
-        "Version: 0.5.5",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -172,7 +164,6 @@
       },
       "debian": [
         "Package: nginx-module-rtmp",
-        "Version: 1.2.2",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -192,7 +183,6 @@
       },
       "debian": [
         "Package: nginx-module-ndk",
-        "Version: 0.3.1",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -214,7 +204,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-vts",
-        "Version: 0.1.18",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -234,7 +223,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-upsync",
-        "Version: 2.1.3",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -258,7 +246,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-brotli",
-        "Version: 1.0.0rc0",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -278,7 +265,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-headers-more",
-        "Version: 0.33",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -298,7 +284,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-redis2",
-        "Version: 0.15",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -318,7 +303,6 @@
       "depends": "nginx (= %s), nginx-module-ndk",
       "debian": [
         "Package: nginx-module-encrypted-session",
-        "Version: 0.08",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -338,7 +322,6 @@
       "depends": "nginx (= %s)",
       "debian": [
         "Package: nginx-module-cookie-flag",
-        "Version: 1.1.0",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -358,7 +341,6 @@
       "depends": "nginx (= %s), nginx-module-ndk",
       "debian": [
         "Package: nginx-module-set-misc",
-        "Version: 0.32",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",
@@ -378,7 +360,6 @@
       },
       "debian": [
         "Package: nginx-module-vod",
-        "Version: 1.29",
         "Section: httpd",
         "Priority: optional",
         "Architecture: amd64",

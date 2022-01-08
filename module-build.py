@@ -95,7 +95,7 @@ def prepare_modules(modules, build_path) -> Dict[str, Path]:
     return module_paths
 
 
-def make_deb(path: Path, deb_path: Path, module: dict, nginx_version):
+def make_deb(path: Path, deb_path: Path, module: dict, nginx_version, deb_suffix):
     with cd(path) as path:
         control_file = path / "DEBIAN" / "control"
         control_file.parent.mkdir(exist_ok=True, parents=True, mode=0o775)
@@ -104,6 +104,7 @@ def make_deb(path: Path, deb_path: Path, module: dict, nginx_version):
             for line in module['debian']:
                 fp.write(f"{line}\n")
             fp.write(f"Installed-Size: {module['size']}\n")
+            fp.write(f"Version: {module['version']}~nginx.{nginx_version}+{deb_suffix}\n")
 
             if "depends" in module:
                 fp.write(f"Depends: {module['depends'] % nginx_version}\n")
@@ -176,7 +177,8 @@ def main():
                 module_dir,
                 deb_path,
                 module,
-                arguments.nginx_depend
+                arguments.nginx_depend,
+                arguments.deb_suffix.strip("-")
             )
             assert deb_path.exists(), f"File {deb_path} was not found"
 
