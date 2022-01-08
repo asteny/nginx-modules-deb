@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-modsecurity": {
+      "repo": "https://github.com/SpiderLabs/ModSecurity-nginx.git",
+      "ref": "v1.0.2",
+      "version": "1.0.2",
+      "files": ["ngx_http_modsecurity_module.so"],
+      "depends": "nginx (= %s), libmodsecurity3",
+      "configs": {
+        "modules-available/50-nginx-module-modsecurity.conf": "load_module /usr/lib/nginx/modules/ngx_http_modsecurity_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-modsecurity",
+        "Version: 1.0.2",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.",
+        "Homepage: https://github.com/SpiderLabs/ModSecurity-nginx/"
+      ]
+    },
     "nginx-module-echo": {
       "repo": "https://github.com/openresty/echo-nginx-module.git",
       "ref": "v0.62",
