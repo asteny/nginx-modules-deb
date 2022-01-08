@@ -24,14 +24,14 @@ jobs:
             nginx_version: "1.14.0"
             nginx_depend: "1.14.0-0ubuntu1.9"
             repo_suffix: bionic
-            extra_packages: "libmaxminddb-dev" 
+            extra_packages: "libmaxminddb-dev libmagic-dev " 
 
           - repo: "focal.list"
             os: "ubuntu-20.04"
             nginx_version: "1.18.0"
             nginx_depend: "1.18.0-0ubuntu1.2"
             repo_suffix: focal
-            extra_packages: "libmaxminddb-dev libmodsecurity-dev"
+            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
 
     steps:
       - uses: actions/checkout@v2
@@ -117,13 +117,13 @@ jobs:
             nginx_version: "1.20.1"
             nginx_depend: "1.20.1-1~bionic"
             repo_suffix: bionic
-            extra_packages: "libmaxminddb-dev"
+            extra_packages: "libmaxminddb-dev libmagic-dev "
 
           - os: "ubuntu-20.04"
             nginx_version: "1.20.1"
             nginx_depend: "1.20.1-1~focal"
             repo_suffix: focal
-            extra_packages: "libmaxminddb-dev libmodsecurity-dev" 
+            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev" 
 
     steps:
       - uses: actions/checkout@v2

@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-guess-mime": {
+      "repo": "https://github.com/ohnx/nginx-guess-mime.git",
+      "ref": "9b8e59f",
+      "version": "20190216",
+      "files": ["ngx_http_guess_mime_module.so"],
+      "depends": "nginx (= %s), libmagic1",
+      "configs": {
+        "modules-available/50-nginx-module-guess-mime.conf": "load_module /usr/lib/nginx/modules/ngx_http_guess_mime_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-guess-mime",
+        "Version: 20190216",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: This module inserts a body filter into the nginx chain that will guess the MIME type of a file if the default file-extension guessing fails.",
+        "Homepage: https://github.com/ohnx/nginx-guess-mime"
+      ]
+    },
     "nginx-module-fancyindex": {
       "repo": "https://github.com/aperezdc/ngx-fancyindex.git",
       "ref": "v0.5.2",
@@ -10,7 +30,7 @@
         "modules-available/50-nginx-module-fancyindex.conf": "load_module /usr/lib/nginx/modules/ngx_http_fancyindex_module.so;\n"
       },
       "debian": [
-        "Package: nginx-module-geoip2",
+        "Package: nginx-module-fancyindex",
         "Version: 0.5.2",
         "Section: httpd",
         "Priority: optional",
