@@ -114,6 +114,20 @@ def make_deb(path: Path, deb_path: Path, module: dict, nginx_version):
                 str(path.relative_to(parent)), str(deb_path)
             ])
 
+def filter_releases(module_map):
+    import lsb_release
+    dist_info = lsb_release.get_distro_information()
+
+    modules = dict(module_map['modules'])
+
+    for name, module in modules.items():
+        only_releases = module.get("only_releases", [])
+
+        if only_releases and dist_info['RELEASE'] not in only_releases:
+            log.info("Skipping module %s", name)
+            module_map['modules'].pop(name)
+
+    return module_map
 
 def main():
     arguments = parser.parse_args()
@@ -123,7 +137,7 @@ def main():
     packages.mkdir(exist_ok=True, parents=True, mode=0o775)
 
     with open(arguments.module_map, "r") as fp:
-        module_map = MappingProxyType(json.load(fp))
+        module_map = MappingProxyType(filter_releases(json.load(fp)))
 
     with cd(arguments.nginx_src), TemporaryDirectory() as build_root:
         build_path = Path(build_root)

@@ -24,12 +24,14 @@ jobs:
             nginx_version: "1.14.0"
             nginx_depend: "1.14.0-0ubuntu1.9"
             repo_suffix: bionic
+            extra_packages: "libmaxminddb-dev" 
 
           - repo: "focal.list"
             os: "ubuntu-20.04"
             nginx_version: "1.18.0"
             nginx_depend: "1.18.0-0ubuntu1.2"
             repo_suffix: focal
+            extra_packages: "libmaxminddb-dev libmodsecurity-dev"
 
     steps:
       - uses: actions/checkout@v2
@@ -47,7 +49,7 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev gem dpkg-sig libmodsecurity-dev
+            ruby ruby-dev gem dpkg-sig ${{ matrix.extra_packages }}
 
       - name: Install package cloud cli
         run: |
@@ -115,11 +117,13 @@ jobs:
             nginx_version: "1.20.1"
             nginx_depend: "1.20.1-1~bionic"
             repo_suffix: bionic
+            extra_packages: "libmaxminddb-dev"
 
           - os: "ubuntu-20.04"
             nginx_version: "1.20.1"
             nginx_depend: "1.20.1-1~focal"
             repo_suffix: focal
+            extra_packages: "libmaxminddb-dev libmodsecurity-dev" 
 
     steps:
       - uses: actions/checkout@v2
@@ -140,7 +144,7 @@ jobs:
           sudo apt-get install -y \
             build-essential ca-certificates curl git gnupg libpcre2-dev \
             libpcre3-dev libssl-dev libz-dev lsb-release python3 ubuntu-keyring \
-            ruby ruby-dev gem dpkg-sig
+            ruby ruby-dev gem dpkg-sig ${{ matrix.extra_packages }}
 
       - name: Install package cloud cli
         run: |

@@ -1,11 +1,32 @@
 {
   "modules": {
+    "nginx-module-geoip2": {
+      "repo": "https://github.com/leev/ngx_http_geoip2_module.git",
+      "ref": "3.3",
+      "version": "3.3",
+      "files": ["ngx_geoip2_module.so"],
+      "depends": "nginx (= %s), libmaxminddb0",
+      "configs": {
+        "modules-available/50-nginx-module-geoip2.conf": "load_module /usr/lib/nginx/modules/ngx_geoip2_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-geoip2",
+        "Version: 3.3",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_geoip2_module - creates variables with values from the maxmind geoip2 databases based on the client IP (default) or from a specific variable (supports both IPv4 and IPv6)",
+        "Homepage: https://github.com/leev/ngx_http_geoip2_module"
+      ]
+    },
     "nginx-module-modsecurity": {
       "repo": "https://github.com/SpiderLabs/ModSecurity-nginx.git",
       "ref": "v1.0.2",
       "version": "1.0.2",
       "files": ["ngx_http_modsecurity_module.so"],
       "depends": "nginx (= %s), libmodsecurity3",
+      "only_releases": ["20.04"],
       "configs": {
         "modules-available/50-nginx-module-modsecurity.conf": "load_module /usr/lib/nginx/modules/ngx_http_modsecurity_module.so;\n"
       },
