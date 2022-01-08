@@ -21,6 +21,7 @@ parser.add_argument("--nginx-depend", required=True)
 parser.add_argument("--target", default="dist")
 parser.add_argument("--deb-path", default="packages")
 parser.add_argument("--deb-suffix", default="")
+parser.add_argument("--deb-epoch", default=1, type=int)
 
 
 lsb_release = check_output(['lsb_release', '-sc']).decode().strip()
@@ -95,7 +96,7 @@ def prepare_modules(modules, build_path) -> Dict[str, Path]:
     return module_paths
 
 
-def make_deb(path: Path, deb_path: Path, module: dict, nginx_version, deb_suffix):
+def make_deb(path: Path, deb_path: Path, module: dict, nginx_version, deb_suffix, deb_epoch):
     with cd(path) as path:
         control_file = path / "DEBIAN" / "control"
         control_file.parent.mkdir(exist_ok=True, parents=True, mode=0o775)
@@ -104,7 +105,7 @@ def make_deb(path: Path, deb_path: Path, module: dict, nginx_version, deb_suffix
             for line in module['debian']:
                 fp.write(f"{line}\n")
             fp.write(f"Installed-Size: {module['size']}\n")
-            fp.write(f"Version: {module['version']}~nginx.{nginx_version}+{deb_suffix}\n")
+            fp.write(f"Version: {deb_epoch}:{module['version']}~nginx.{nginx_version}+{deb_suffix}\n")
 
             if "depends" in module:
                 fp.write(f"Depends: {module['depends'] % nginx_version}\n")
@@ -178,7 +179,8 @@ def main():
                 deb_path,
                 module,
                 arguments.nginx_depend,
-                arguments.deb_suffix.strip("-")
+                arguments.deb_suffix.strip("-"),
+                arguments.deb_epoch
             )
             assert deb_path.exists(), f"File {deb_path} was not found"
 
