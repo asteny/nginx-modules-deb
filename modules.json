@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-srcache": {
+      "repo": "https://github.com/openresty/srcache-nginx-module.git",
+      "ref": "v0.32",
+      "version": "0.32",
+      "files": ["ngx_http_srcache_filter_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-upload.conf": "load_module /usr/lib/nginx/modules/ngx_http_srcache_filter_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-upload",
+        "Version: 0.32",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_srcache - Transparent subrequest-based caching layout for arbitrary nginx locations.",
+        "Homepage: https://github.com/openresty/srcache-nginx-module"
+      ]
+    },
     "nginx-module-upload": {
       "repo": "https://github.com/fdintino/nginx-upload-module.git",
       "ref": "2.3.0",
