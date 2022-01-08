@@ -47,7 +47,7 @@ def build(modules, module_paths) -> Dict[str, dict]:
 
     Popen(["make", "clean"]).wait()
     check_call(["/bin/bash", "./configure", "--with-compat"] + module_args)
-    check_call(["make", "modules"])
+    check_call(["make", "-j4", "modules"])
 
     cwd = Path(os.getcwd())
 
@@ -105,7 +105,7 @@ def make_deb(path: Path, deb_path: Path, module: dict, nginx_version, deb_suffix
             for line in module['debian']:
                 fp.write(f"{line}\n")
             fp.write(f"Installed-Size: {module['size']}\n")
-            fp.write(f"Version: {deb_epoch}:{module['version']}~nginx.{nginx_version}+{deb_suffix}\n")
+            fp.write(f"Version: {deb_epoch}:{module['version']}~nginx.{nginx_version}+{deb_suffix}{deb_epoch}\n")
 
             if "depends" in module:
                 fp.write(f"Depends: {module['depends'] % nginx_version}\n")
