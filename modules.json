@@ -185,6 +185,26 @@
         "Description: ngx_set_misc - Various set_xxx directives added to nginx's rewrite module (md5/sha1, sql/json quoting, and many more)",
         "Homepage: https://github.com/openresty/set-misc-nginx-module"
       ]
+    },
+    "nginx-module-vod": {
+      "repo": "https://github.com/kaltura/nginx-vod-module.git",
+      "ref": "1.29",
+      "version": "1.29",
+      "files": ["ngx_http_vod_module.so"],
+      "depends": "nginx (= %s), zlib1g, libssl1.1",
+      "configs": {
+        "modules-available/50-nginx-module-vod.conf": "load_module /usr/lib/nginx/modules/ngx_http_vod_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-vod",
+        "Version: 1.29",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: nginx-vod-module - NGINX-based VOD Packager",
+        "Homepage: https://github.com/kaltura/nginx-vod-module/"
+      ]
     }
   }
 }
