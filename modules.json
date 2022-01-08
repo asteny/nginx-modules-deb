@@ -1,5 +1,25 @@
 {
   "modules": {
+    "nginx-module-upload": {
+      "repo": "https://github.com/fdintino/nginx-upload-module.git",
+      "ref": "2.3.0",
+      "version": "2.3.0",
+      "files": ["ngx_http_upload_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-upload.conf": "load_module /usr/lib/nginx/modules/ngx_http_upload_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-upload",
+        "Version: 2.3.0",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: nginx-upload-module - A module for nginx for handling file uploads using multipart/form-data encoding (RFC 1867) and resumable uploads according to this protocol.",
+        "Homepage: https://github.com/fdintino/nginx-upload-module/tree/2.3.0"
+      ]
+    },
     "nginx-module-push-stream": {
       "repo": "https://github.com/wandenberg/nginx-push-stream-module.git",
       "ref": "0.5.5",
