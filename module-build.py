@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import multiprocessing
 from argparse import ArgumentParser
 from contextlib import contextmanager
 from pathlib import Path
@@ -22,6 +23,7 @@ parser.add_argument("--target", default="dist")
 parser.add_argument("--deb-path", default="packages")
 parser.add_argument("--deb-suffix", default="")
 parser.add_argument("--deb-epoch", default=1, type=int)
+parser.add_argument("--concurrent", default=multiprocessing.cpu_count(), type=int)
 
 
 lsb_release = check_output(['lsb_release', '-sc']).decode().strip()
@@ -39,7 +41,7 @@ def cd(path) -> Path:
         os.chdir(current)
 
 
-def build(modules, module_paths) -> Dict[str, dict]:
+def build(modules, module_paths, concurrent) -> Dict[str, dict]:
     module_args = []
 
     for path in module_paths.values():
@@ -47,7 +49,7 @@ def build(modules, module_paths) -> Dict[str, dict]:
 
     Popen(["make", "clean"]).wait()
     check_call(["/bin/bash", "./configure", "--with-compat"] + module_args)
-    check_call(["make", "-j4", "modules"])
+    check_call(["make", f"-j{concurrent}", "modules"])
 
     cwd = Path(os.getcwd())
 
@@ -145,7 +147,7 @@ def main():
         build_path = Path(build_root)
         modules = module_map['modules']
         module_paths = prepare_modules(modules, build_path)
-        artifacts = build(modules, module_paths)
+        artifacts = build(modules, module_paths, arguments.concurrent)
 
         dist.mkdir(exist_ok=True, parents=True, mode=0o775)
         for name, module in artifacts.items():
