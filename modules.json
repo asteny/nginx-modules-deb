@@ -1,5 +1,24 @@
 {
   "modules": {
+    "nginx-module-dynamic-upstream": {
+      "repo": "https://github.com/cubicdaiya/ngx_dynamic_upstream.git",
+      "ref": "v0.1.6",
+      "version": "0.1.6",
+      "files": ["ngx_dynamic_upstream_module.so"],
+      "depends": "nginx (= %s)",
+      "configs": {
+        "modules-available/50-nginx-module-dynamic-upstream.conf": "load_module /usr/lib/nginx/modules/ngx_dynamic_upstream_module.so;\n"
+      },
+      "debian": [
+        "Package: nginx-module-dynamic-upstream",
+        "Section: httpd",
+        "Priority: optional",
+        "Architecture: amd64",
+        "Maintainer: Dmitry Orlov <me@mosquito.su>",
+        "Description: ngx_dynamic_upstream - is the module for operating upstreams dynamically with HTTP APIs such as ngx_http_upstream_conf.",
+        "Homepage: https://github.com/cubicdaiya/ngx_dynamic_upstream/tree/v0.1.6"
+      ]
+    },
     "nginx-module-guess-mime": {
       "repo": "https://github.com/ohnx/nginx-guess-mime.git",
       "ref": "9b8e59f",
