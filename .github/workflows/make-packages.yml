@@ -66,6 +66,9 @@ jobs:
       - name: Adding builder user
         run: sudo useradd -m -s /bin/bash builder
 
+      - name: Make repo readable
+        run: sudo chmod a+rX -R .
+
       - name: Create packages directory
         run: sudo mkdir -p packages && sudo chmod g+rwX packages && sudo chown :builder packages
 
@@ -166,6 +169,9 @@ jobs:
 
       - name: Adding builder user
         run: sudo useradd -m -s /bin/bash builder
+
+      - name: Make repo readable
+        run: sudo chmod a+rX -R .
 
       - name: Create packages directory
         run: sudo mkdir -p packages && sudo chmod g+rwX packages && sudo chown :builder packages
