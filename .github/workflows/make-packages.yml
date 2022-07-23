@@ -127,20 +127,20 @@ jobs:
         include:
 
           - os: "ubuntu-18.04"
-            nginx_version: "1.23.0"
-            nginx_depend: "1.23.0-1~bionic"
+            nginx_version: "1.22.0"
+            nginx_depend: "1.22.0-1~bionic"
             repo_suffix: bionic
             extra_packages: "libmaxminddb-dev libmagic-dev "
 
           - os: "ubuntu-20.04"
-            nginx_version: "1.23.0"
-            nginx_depend: "1.23.0-1~focal"
+            nginx_version: "1.22.0"
+            nginx_depend: "1.22.0-1~focal"
             repo_suffix: focal
             extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
 
           - os: "ubuntu-22.04"
-            nginx_version: "1.23.0"
-            nginx_depend: "1.23.0-1~jammy"
+            nginx_version: "1.22.0"
+            nginx_depend: "1.22.0-1~jammy"
             repo_suffix: jammy
             extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
 
