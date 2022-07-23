@@ -67,7 +67,7 @@ jobs:
         run: sudo useradd -m -s /bin/bash builder
 
       - name: Make repo readable
-        run: sudo chmod a+rX -vR .
+        run: (sudo cp -a * /home/builder; sudo chown builder:builder /home/builder)
 
       - name: Create packages directory
         run: sudo mkdir -p packages && sudo chmod g+rwX packages && sudo chown :builder packages
@@ -77,7 +77,7 @@ jobs:
 
       - name: Build packages
         run: >
-          sudo -u builder python3 module-build.py \
+          sudo -u builder python3 /home/builder/module-build.py \
             --target /home/builder/dist \
             --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
             --nginx-depend ${{ matrix.nginx_depend }} \
@@ -171,7 +171,7 @@ jobs:
         run: sudo useradd -m -s /bin/bash builder
 
       - name: Make repo readable
-        run: sudo chmod a+rX -vR .
+        run: (sudo cp -a * /home/builder; sudo chown builder:builder /home/builder)
 
       - name: Create packages directory
         run: sudo mkdir -p packages && sudo chmod g+rwX packages && sudo chown :builder packages
@@ -181,7 +181,7 @@ jobs:
 
       - name: Build packages
         run: >
-          sudo -u builder python3 module-build.py \
+          sudo -u builder python3 /home/builder/module-build.py \
             --target /home/builder/dist \
             --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
             --nginx-depend ${{ matrix.nginx_depend }} \
