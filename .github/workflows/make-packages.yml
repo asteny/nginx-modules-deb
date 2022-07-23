@@ -158,6 +158,9 @@ jobs:
       - name: Update repo
         run: sudo apt-get update
 
+      - name: Nginx versions
+        run: sudo apt-cache policy nginx
+
       - name: Install build requires
         run: >
           sudo apt-get install -y \
