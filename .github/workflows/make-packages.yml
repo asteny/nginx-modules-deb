@@ -24,12 +24,19 @@ jobs:
             nginx_version: "1.14.0"
             nginx_depend: "1.14.0-0ubuntu1.9"
             repo_suffix: bionic
-            extra_packages: "libmaxminddb-dev libmagic-dev " 
+            extra_packages: "libmaxminddb-dev libmagic-dev "
 
           - repo: "focal.list"
             os: "ubuntu-20.04"
             nginx_version: "1.18.0"
             nginx_depend: "1.18.0-0ubuntu1.2"
+            repo_suffix: focal
+            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
+
+          - repo: "jammy.list"
+            os: "ubuntu-22.04"
+            nginx_version: "1.18.0"
+            nginx_depend: "1.18.0-6ubuntu14"
             repo_suffix: focal
             extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
 
@@ -114,16 +121,22 @@ jobs:
         include:
 
           - os: "ubuntu-18.04"
-            nginx_version: "1.20.2"
-            nginx_depend: "1.20.2-1~bionic"
+            nginx_version: "1.23.1"
+            nginx_depend: "1.23.1-1~bionic"
             repo_suffix: bionic
             extra_packages: "libmaxminddb-dev libmagic-dev "
 
           - os: "ubuntu-20.04"
-            nginx_version: "1.20.2"
-            nginx_depend: "1.20.2-1~focal"
+            nginx_version: "1.23.1"
+            nginx_depend: "1.23.1-1~focal"
             repo_suffix: focal
-            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev" 
+            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
+
+          - os: "ubuntu-22.04"
+            nginx_version: "1.23.1"
+            nginx_depend: "1.23.1-1~jammy"
+            repo_suffix: jammy
+            extra_packages: "libmaxminddb-dev libmagic-dev libmodsecurity-dev"
 
     steps:
       - uses: actions/checkout@v2
@@ -131,7 +144,7 @@ jobs:
           submodules: recursive
 
       - name: Configure nginx.list
-        run: sudo cp nginx.list /etc/apt/sources.list.d/
+        run: sudo cp nginx.${{ matrix.repo_suffix }}.list /etc/apt/sources.list.d/
 
       - name: Configure nginx gpg key
         run: sudo cp nginx.gpg /etc/apt/trusted.gpg.d/
