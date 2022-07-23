@@ -82,8 +82,11 @@ jobs:
             --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
             --nginx-depend ${{ matrix.nginx_depend }} \
             --module-map modules.json \
-            --deb-path packages \
+            --deb-path /home/builder/packages \
             --deb-suffix="-ubuntu"
+
+      - name: Copy packages
+        run: (sudo cp -a /home/builder/packages ./; sudo chown `whoami` packages)
 
       - name: Prepare gpg
         env:
@@ -186,8 +189,11 @@ jobs:
             --nginx-src /home/builder/nginx-${{ matrix.nginx_version }} \
             --nginx-depend ${{ matrix.nginx_depend }} \
             --module-map modules.json \
-            --deb-path packages \
+            --deb-path /home/builder/packages \
             --deb-suffix="-nginx"
+
+      - name: Copy packages
+        run: (sudo cp -a /home/builder/packages ./; sudo chown `whoami` packages)
 
       - name: Prepare gpg
         env:
