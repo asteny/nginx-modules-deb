@@ -148,7 +148,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-
+          
+      - name: Configure sudo
+        run: >
+          echo "Defaults   runcwd=*" | sudo tee /etc/sudoers.d/root
+          sudo chmod 0440 /etc/sudoers.d/root
+          
       - name: Configure nginx.list
         run: sudo cp nginx.${{ matrix.repo_suffix }}.list /etc/apt/sources.list.d/
 
