@@ -45,6 +45,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Configure sudo
+        run: >
+          echo "Defaults   runcwd=*" | sudo tee /etc/sudoers.d/root
+          sudo chmod 0440 /etc/sudoers.d/root
+          
       - name: Configure sources.list as ${{ matrix.repo }}
         run: sudo cp ${{ matrix.repo }} /etc/apt/sources.list
 
