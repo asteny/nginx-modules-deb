@@ -48,7 +48,7 @@ def build(modules, module_paths, concurrent) -> Dict[str, dict]:
         module_args.append(f"--add-dynamic-module={path}")
 
     Popen(["make", "clean"]).wait()
-    check_call(["/bin/bash", "./configure", "--with-compat"] + module_args)
+    check_call(["/bin/bash", "./configure", "--with-compat", "--with-cc-opt=-Wno-stringop-overread"] + module_args)
     check_call(["make", f"-j{concurrent}", "modules"])
 
     cwd = Path(os.getcwd())
