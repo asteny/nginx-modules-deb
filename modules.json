@@ -78,8 +78,8 @@
     },
     "nginx-module-modsecurity": {
       "repo": "https://github.com/SpiderLabs/ModSecurity-nginx.git",
-      "ref": "v1.0.2",
-      "version": "1.0.2",
+      "ref": "v1.0.3",
+      "version": "1.0.3",
       "files": ["ngx_http_modsecurity_module.so"],
       "depends": "nginx (= %s), libmodsecurity3",
       "only_releases": ["20.04"],
