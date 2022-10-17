@@ -59,8 +59,8 @@
     },
     "nginx-module-geoip2": {
       "repo": "https://github.com/leev/ngx_http_geoip2_module.git",
-      "ref": "3.3",
-      "version": "3.3",
+      "ref": "3.4",
+      "version": "3.4",
       "files": ["ngx_http_geoip2_module.so"],
       "depends": "nginx (= %s), libmaxminddb0",
       "configs": {
@@ -212,8 +212,8 @@
     },
     "nginx-module-vts": {
       "repo": "https://github.com/vozlt/nginx-module-vts.git",
-      "ref": "v0.1.18",
-      "version": "0.1.18",
+      "ref": "v0.2.1",
+      "version": "0.2.1",
       "files": [
         "ngx_http_vhost_traffic_status_module.so"
       ],
@@ -275,8 +275,8 @@
     },
     "nginx-module-headers-more": {
       "repo": "https://github.com/openresty/headers-more-nginx-module.git",
-      "ref": "v0.33",
-      "version": "0.33",
+      "ref": "v0.34",
+      "version": "0.34",
       "files": ["ngx_http_headers_more_filter_module.so"],
       "configs": {
         "modules-available/50-nginx-module-headers-more.conf": "load_module /usr/lib/nginx/modules/ngx_http_headers_more_filter_module.so;\n"
@@ -313,8 +313,8 @@
     },
     "nginx-module-encrypted-session": {
       "repo": "https://github.com/openresty/encrypted-session-nginx-module.git",
-      "ref": "v0.08",
-      "version": "0.08",
+      "ref": "v0.09",
+      "version": "0.09",
       "files": ["ngx_http_encrypted_session_module.so"],
       "configs": {
         "modules-available/50-nginx-module-encrypted-session.conf": "load_module /usr/lib/nginx/modules/ngx_http_encrypted_session_module.so;\n"
@@ -351,8 +351,8 @@
     },
     "nginx-module-set-misc": {
       "repo": "https://github.com/openresty/set-misc-nginx-module.git",
-      "ref": "v0.32",
-      "version": "0.32",
+      "ref": "v0.33",
+      "version": "0.33",
       "files": ["ngx_http_set_misc_module.so"],
       "configs": {
         "modules-available/50-nginx-module-set-misc.conf": "load_module /usr/lib/nginx/modules/ngx_http_set_misc_module.so;\n"
@@ -370,8 +370,8 @@
     },
     "nginx-module-vod": {
       "repo": "https://github.com/kaltura/nginx-vod-module.git",
-      "ref": "1.29",
-      "version": "1.29",
+      "ref": "1.30",
+      "version": "1.30",
       "files": ["ngx_http_vod_module.so"],
       "depends": "nginx (= %s), zlib1g, libssl1.1",
       "configs": {
